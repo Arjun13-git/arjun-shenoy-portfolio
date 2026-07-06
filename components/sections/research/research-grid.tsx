@@ -8,10 +8,10 @@ import { fadeUp } from "@/lib/animations";
 import { formatDate } from "@/utils/date";
 
 const statusConfig: Record<ResearchStatus, { label: string; class: string }> = {
-  active:    { label: "Active Research",  class: "text-emerald-400 bg-emerald-500/10 border-emerald-500/20" },
-  published: { label: "Published",        class: "text-blue-400 bg-blue-500/10 border-blue-500/20" },
-  completed: { label: "Completed",        class: "text-cyan-400 bg-cyan-500/10 border-cyan-500/20" },
-  draft:     { label: "Draft",            class: "text-muted-foreground bg-muted/50 border-border" },
+  active: { label: "Active Research", class: "text-emerald-400 bg-emerald-500/10 border-emerald-500/20" },
+  published: { label: "Published", class: "text-blue-400 bg-blue-500/10 border-blue-500/20" },
+  completed: { label: "Completed", class: "text-cyan-400 bg-cyan-500/10 border-cyan-500/20" },
+  draft: { label: "Draft", class: "text-muted-foreground bg-muted/50 border-border" },
 };
 
 function ResearchCard({ paper, index }: { paper: Research; index: number }) {

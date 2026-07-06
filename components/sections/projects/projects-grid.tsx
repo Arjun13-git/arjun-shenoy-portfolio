@@ -9,19 +9,19 @@ import { fadeUp } from "@/lib/animations";
 import { formatDate } from "@/utils/date";
 
 const FILTERS: { label: string; value: ProjectCategory | "all" }[] = [
-  { label: "All",      value: "all" },
-  { label: "AI / ML",  value: "ai" },
+  { label: "All", value: "all" },
+  { label: "AI / ML", value: "ai" },
   { label: "Research", value: "research" },
-  { label: "Backend",  value: "backend" },
-  { label: "Tools",    value: "tools" },
+  { label: "Backend", value: "backend" },
+  { label: "Tools", value: "tools" },
   { label: "Frontend", value: "frontend" },
 ];
 
 const statusConfig = {
-  active:    { label: "Active",    class: "text-emerald-400 bg-emerald-500/10 border-emerald-500/20" },
+  active: { label: "Active", class: "text-emerald-400 bg-emerald-500/10 border-emerald-500/20" },
   completed: { label: "Completed", class: "text-blue-400 bg-blue-500/10 border-blue-500/20" },
-  research:  { label: "Research",  class: "text-violet-400 bg-violet-500/10 border-violet-500/20" },
-  archived:  { label: "Archived",  class: "text-muted-foreground bg-muted/50 border-border" },
+  research: { label: "Research", class: "text-violet-400 bg-violet-500/10 border-violet-500/20" },
+  archived: { label: "Archived", class: "text-muted-foreground bg-muted/50 border-border" },
 };
 
 function ProjectCard({ project, index }: { project: Project; index: number }) {

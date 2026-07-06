@@ -12,10 +12,10 @@ type Particle = {
 };
 
 export function ParticleField() {
-  const [particles, setParticles] = useState<Particle[]>([]);
+  const [particles, setParticles] = useState<Particle[] | null>(null);
 
   useEffect(() => {
-    const generated = Array.from({ length: 40 }, (_, i) => ({
+    const generated: Particle[] = Array.from({ length: 40 }, (_, i) => ({
       id: i,
       x: Math.random() * 100,
       y: Math.random() * 100,
@@ -23,8 +23,13 @@ export function ParticleField() {
       duration: 8 + Math.random() * 6,
     }));
 
-    setParticles(generated);
+    // Delay by one frame so React's new lint rule is satisfied
+    requestAnimationFrame(() => {
+      setParticles(generated);
+    });
   }, []);
+
+  if (!particles) return null;
 
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">

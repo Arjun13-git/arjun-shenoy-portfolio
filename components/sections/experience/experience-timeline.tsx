@@ -8,10 +8,10 @@ import { cn } from "@/lib/utils";
 import { fadeUp } from "@/lib/animations";
 
 const typeConfig: Record<ExperienceType, { Icon: typeof Briefcase; label: string; color: string }> = {
-  internship: { Icon: Briefcase,       label: "Internship",  color: "text-cyan-400 bg-cyan-500/10" },
-  training:   { Icon: GraduationCap,   label: "Training",    color: "text-violet-400 bg-violet-500/10" },
-  freelance:  { Icon: Briefcase,       label: "Freelance",   color: "text-blue-400 bg-blue-500/10" },
-  research:   { Icon: GraduationCap,   label: "Research",    color: "text-emerald-400 bg-emerald-500/10" },
+  internship: { Icon: Briefcase, label: "Internship", color: "text-cyan-400 bg-cyan-500/10" },
+  training: { Icon: GraduationCap, label: "Training", color: "text-violet-400 bg-violet-500/10" },
+  freelance: { Icon: Briefcase, label: "Freelance", color: "text-blue-400 bg-blue-500/10" },
+  research: { Icon: GraduationCap, label: "Research", color: "text-emerald-400 bg-emerald-500/10" },
 };
 
 export function ExperienceTimeline({ experiences }: { experiences: Experience[] }) {

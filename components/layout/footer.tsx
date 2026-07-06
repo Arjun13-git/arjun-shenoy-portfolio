@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { GitBranch, Link2, Mail, ArrowUpRight } from "lucide-react";
 
 import { siteConfig } from "@/config/site";

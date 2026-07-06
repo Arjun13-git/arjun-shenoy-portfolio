@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { GitBranch, Link2, Mail, MapPin, MessageSquare } from "lucide-react";
+import { GitBranch, Link2, Mail, MapPin } from "lucide-react";
 import { siteConfig } from "@/config/site";
 import { fadeUp } from "@/lib/animations";
 

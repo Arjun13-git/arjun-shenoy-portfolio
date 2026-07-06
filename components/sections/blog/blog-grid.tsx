@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import { Clock, ArrowRight, Calendar } from "lucide-react";
 import type { BlogPost } from "@/types";
-import { cn } from "@/lib/utils";
 import { fadeUp } from "@/lib/animations";
 import { formatDate } from "@/utils/date";
 

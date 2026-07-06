@@ -1,4 +1,3 @@
-import type { Experience } from "@/types";
 import { getAllExperience } from "@/lib/content";
 import { ExperienceTimeline } from "./experience-timeline";
 
