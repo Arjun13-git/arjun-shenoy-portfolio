@@ -4,6 +4,7 @@ import { HeroStats } from "./hero-stats";
 import { motion } from "framer-motion";
 import { fadeLeft } from "@/lib/animations";
 
+
 export function HeroContent() {
   return (
     <motion.div
@@ -47,9 +48,11 @@ export function HeroContent() {
             with real-world impact.
         </p>
 
-      <HeroActions />
+      <div className="mt-10">
+  <HeroActions />
+</div>
 
-      <HeroStats />
+<HeroStats />
 
     </motion.div>
   );

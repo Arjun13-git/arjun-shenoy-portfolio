@@ -6,14 +6,16 @@ import { fadeRight } from "@/lib/animations";
 import { HeroBackground } from "./hero-background";
 import { HeroContent } from "./hero-content";
 import { AICore } from "@/components/visualizations/ai-core";
+import { SystemStatus } from "@/components/hero/system-status";
+import { HeroEngine } from "@/components/visualizations/hero-engine";
 
 export function Hero() {
   return (
     <section className="relative min-h-screen overflow-hidden pt-20 lg:pt-24">
       <HeroBackground />
 
-      <div className="relative z-10 mx-auto flex min-h-[85vh] max-w-[1500px] items-center px-6">
-        <div className="grid w-full items-center gap-24 lg:grid-cols-2">
+      <div className="relative z-10 mx-auto flex min-h-[85vh] max-w-[1700px] items-center px-6">
+        <div className="grid w-full items-center gap-24 lg:grid-cols-[0.9fr_1.1fr]">
           <HeroContent />
 
           <motion.div
@@ -22,7 +24,7 @@ export function Hero() {
             initial="hidden"
             animate="visible"
           >
-            <AICore />
+            <HeroEngine />
           </motion.div>
         </div>
       </div>
