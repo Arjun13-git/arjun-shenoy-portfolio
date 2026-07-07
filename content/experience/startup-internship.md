@@ -6,7 +6,7 @@ type: internship
 duration: "Present"
 startDate: "2026-03-01"
 endDate: ""
-location: "Remote, India"
+location: "On-site, Mangalore"
 current: true
 description: "Contributing to an AI-powered CAD platform and an enterprise ERP system. Building full-stack features, integrating machine learning capabilities and REST APIs, and improving application reliability across production environments."
 tech: ["Python", "FastAPI", "Next.js", "React", "TypeScript", "PostgreSQL", "SQLAlchemy", "Docker", "Git"]
@@ -17,4 +17,4 @@ highlights:
   - "Improved application reliability using FastAPI, Next.js, React, TypeScript, PostgreSQL, SQLAlchemy, Docker, and Git"
 ---
 
-An ongoing internship at Datavex.ai Private Limited, providing hands-on experience with production-level AI engineering, full-stack development, and enterprise software at scale.
+An ongoing internship at Datavex.ai Private Limited, providing hands-on experience with production-level ing, full-stack development, and enterprise software at scale.

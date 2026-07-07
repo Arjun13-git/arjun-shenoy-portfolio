@@ -68,7 +68,7 @@ export function ContactInfo() {
             Software Engineering Intern
           </p>
           <p className="text-sm font-medium text-cyan-400">Datavex AI Pvt Ltd</p>
-          <p className="mt-1 text-xs text-muted-foreground">Mar 2026 – Present · Remote, India</p>
+          <p className="mt-1 text-xs text-muted-foreground">Mar 2026 – Present · On-site, Mangalore</p>
         </div>
       </div>
 
@@ -121,8 +121,7 @@ export function ContactInfo() {
       {/* Resume Download */}
       <a
         href={siteConfig.resumeUrl}
-        target="_blank"
-        rel="noopener noreferrer"
+        download="Arjun_Shenoy_R_Resume.pdf"
         className="flex items-center justify-center gap-3 w-full rounded-xl border border-cyan-500/30 bg-cyan-500/10 p-5 text-cyan-400 transition-all duration-200 hover:bg-cyan-500/20 hover:border-cyan-500/50 group"
         aria-label="Download Arjun Shenoy R's resume"
       >

@@ -3,9 +3,10 @@ slug: hotel-billing-system
 title: "Hotel Room Services Billing Management System"
 description: "A full-stack hotel management application for managing room service requests, billing, invoice generation, customer records, and administrative workflows through a centralized dashboard."
 tech: ["React", "Node.js", "Express", "MongoDB", "Bootstrap", "REST APIs"]
-category: backend
+category: frontend
 status: completed
 featured: false
+github: "https://github.com/aniprogramer/Hotel-Room-Services-Billing-Management-System"
 date: "2025-10-01"
 tags: ["Frontend", "Backend"]
 highlights:

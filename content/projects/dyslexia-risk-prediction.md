@@ -6,6 +6,7 @@ tech: ["Python", "TensorFlow", "Keras", "LSTM", "OpenCV", "NumPy"]
 category: ai
 status: completed
 featured: true
+github: "https://github.com/AjithGoveas/mini-project-dyslexia"
 date: "2025-11-01"
 tags: ["Frontend"]
 highlights:

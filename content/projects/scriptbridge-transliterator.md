@@ -6,6 +6,7 @@ tech: ["Python", "FastAPI", "React", "MongoDB", "Natural Language Processing", "
 category: ai
 status: completed
 featured: false
+github: "https://github.com/AjithGoveas/transliterator"
 date: "2025-12-01"
 tags: ["Frontend", "Backend"]
 highlights:

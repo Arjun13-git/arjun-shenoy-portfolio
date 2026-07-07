@@ -6,6 +6,7 @@ tech: ["React", "Node.js", "Express", "MongoDB", "REST APIs", "JavaScript"]
 category: backend
 status: completed
 featured: false
+github: "https://github.com/aniprogramer/RailNova"
 date: "2025-12-01"
 tags: ["Frontend", "Backend"]
 highlights:

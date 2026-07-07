@@ -6,6 +6,7 @@ tech: ["React", "JavaScript", "CSS", "HTML", "Bootstrap"]
 category: frontend
 status: completed
 featured: false
+github: "https://github.com/Arjun13-git/Foodie-Main-"
 date: "2025-09-01"
 highlights:
   - "Component-driven React architecture"

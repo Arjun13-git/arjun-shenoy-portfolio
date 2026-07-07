@@ -3,9 +3,10 @@ slug: safe-horizon
 title: "Safe Horizon"
 description: "An AI-powered disaster response platform with real-time earthquake monitoring, geospatial visualization, and intelligent safety recommendations — built at HackHazards 2025."
 tech: ["React", "FastAPI", "Python", "MongoDB", "Groq AI", "USGS API", "Fluvio", "OpenCage"]
-category: ai
+category: frontend
 status: completed
 featured: true
+github: "https://github.com/Arjun13-git/Disaster_Alert_Mgt"
 date: "2026-03-01"
 tags: ["Frontend"]
 highlights:

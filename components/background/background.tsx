@@ -1,23 +1,16 @@
 import { GradientBackground } from "./gradient";
 import { GridBackground } from "./grid";
-import { NeuralNetwork } from "./neural-network";
-import { Ocean } from "./ocean";
-import { Noise } from "./noise";
 
+/**
+ * Background system for the hero section.
+ * Simplified — neural network dots/lines removed as they don't adapt to light mode.
+ * The gradient and grid provide sufficient visual interest.
+ */
 export function Background() {
   return (
-    <div className="absolute inset-0 overflow-hidden">
-
+    <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
       <GradientBackground />
-
       <GridBackground />
-
-      <NeuralNetwork />
-
-      <Ocean />
-
-      <Noise />
-
     </div>
   );
 }

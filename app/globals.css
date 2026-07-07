@@ -62,7 +62,7 @@
 /* ─── Dark Theme (Default) ───────────────────────────────────────────── */
 
 :root {
-  /* Neural Horizon dark palette from docs/04-DESIGN_SYSTEM.md */
+  /* Neural Horizon dark palette */
   --background:          #090B10;
   --foreground:          #F8FAFC;
 
@@ -117,57 +117,63 @@
   --sidebar-ring:               rgba(59, 130, 246, 0.5);
 }
 
-/* ─── Light Theme ────────────────────────────────────────────────────── */
+/* ─── Light Theme — Premium (Linear/Vercel inspired) ─────────────────── */
 
 .light {
-  --background:          #F5F7FA;
-  --foreground:          #0D1117;
+  /* Clean white base with subtle warm-neutral tint */
+  --background:          #FAFAFA;
+  --foreground:          #0A0A0A;
 
+  /* Cards: pure white with subtle shadow */
   --card:                #FFFFFF;
-  --card-foreground:     #0D1117;
+  --card-foreground:     #0A0A0A;
 
   --popover:             #FFFFFF;
-  --popover-foreground:  #0D1117;
+  --popover-foreground:  #0A0A0A;
 
-  --surface:             #EEF2F7;
-  --elevated:            #E2E8F0;
+  /* Surfaces: very slightly off-white */
+  --surface:             #F4F4F5;
+  --elevated:            #E4E4E7;
 
-  --primary:             #0369A1;
+  /* Primary — refined blue (Vercel/Linear) */
+  --primary:             #0F62FE;
   --primary-foreground:  #FFFFFF;
 
-  --secondary:           #EEF2F7;
-  --secondary-foreground: #1E293B;
+  /* Secondary — subtle gray (GitHub-inspired) */
+  --secondary:           #F4F4F5;
+  --secondary-foreground: #18181B;
 
-  --muted:               #F1F5F9;
-  --muted-foreground:    #4B5563;
+  --muted:               #F4F4F5;
+  --muted-foreground:    #71717A;
 
+  /* Accent — violet */
   --accent:              #7C3AED;
   --accent-foreground:   #FFFFFF;
 
   --destructive:         #DC2626;
 
-  --border:              #D1D9E3;
-  --input:               #D1D9E3;
-  --ring:                rgba(3, 105, 161, 0.4);
+  /* Borders: very subtle like Vercel */
+  --border:              #E4E4E7;
+  --input:               #E4E4E7;
+  --ring:                rgba(15, 98, 254, 0.35);
 
-  /* Brand palette — richer, more legible in light mode */
-  --brand-cyan:    #0369A1;
-  --brand-blue:    #1D4ED8;
-  --brand-violet:  #6D28D9;
-  --brand-emerald: #047857;
-  --brand-warning: #B45309;
-  --brand-danger:  #B91C1C;
+  /* Brand palette — matched to dark theme but slightly darkened for contrast on white */
+  --brand-cyan:    #06B6D4; /* matches cyan-500 */
+  --brand-blue:    #2563EB; /* matches blue-600 */
+  --brand-violet:  #8B5CF6; /* matches violet-500 */
+  --brand-emerald: #10B981; /* matches emerald-500 */
+  --brand-warning: #EAB308;
+  --brand-danger:  #EF4444;
 
   --sidebar:                    #FFFFFF;
-  --sidebar-foreground:         #0D1117;
-  --sidebar-primary:            #0369A1;
+  --sidebar-foreground:         #0A0A0A;
+  --sidebar-primary:            #06B6D4;
   --sidebar-primary-foreground: #FFFFFF;
-  --sidebar-accent:             #EEF2F7;
-  --sidebar-accent-foreground:  #0D1117;
-  --sidebar-border:             #D1D9E3;
-  --sidebar-ring:               rgba(3, 105, 161, 0.4);
+  --sidebar-accent:             #F4F4F5;
+  --sidebar-accent-foreground:  #0A0A0A;
+  --sidebar-border:             #E4E4E7;
+  --sidebar-ring:               rgba(6, 182, 212, 0.35);
 }
-
 
 /* ─── Base Layer ─────────────────────────────────────────────────────── */
 
@@ -216,7 +222,7 @@
     @apply mt-4 max-w-2xl text-muted-foreground text-lg leading-relaxed;
   }
 
-  /* Glass card */
+  /* Glass card — dark mode */
   .glass {
     background: rgba(23, 29, 41, 0.6);
     backdrop-filter: blur(12px);
@@ -224,15 +230,16 @@
     border: 1px solid rgba(255, 255, 255, 0.08);
   }
 
+  /* Glass card — light mode */
   .glass-light {
     background: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 4px 16px rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.07);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 4px 16px rgba(0, 0, 0, 0.03);
   }
 
-  /* Gradient text */
+  /* Gradient text — dark mode */
   .gradient-text {
     background: linear-gradient(135deg, #22D3EE 0%, #3B82F6 50%, #A78BFA 100%);
     -webkit-background-clip: text;
@@ -240,13 +247,25 @@
     background-clip: text;
   }
 
-  /* Cyan glow */
+  /* Gradient text — light mode override */
+  .light .gradient-text {
+    background: linear-gradient(135deg, #0891B2 0%, #0F62FE 50%, #7C3AED 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Subtle glow effects */
   .glow-cyan {
-    box-shadow: 0 0 20px rgba(34, 211, 238, 0.3);
+    box-shadow: 0 0 20px rgba(34, 211, 238, 0.25);
+  }
+
+  .light .glow-cyan {
+    box-shadow: 0 0 20px rgba(8, 145, 178, 0.2);
   }
 
   .glow-blue {
-    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.25);
   }
 
   /* Container */
@@ -259,12 +278,21 @@
     @apply transition-all duration-200 hover:-translate-y-1 hover:shadow-lg;
   }
 
-  /* Light mode enhanced card shadow */
+  /* Light mode card shadows */
   .light .card-shadow {
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 4px 16px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 4px 12px rgba(0, 0, 0, 0.04);
   }
 
   .light .card-shadow:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 0 8px 32px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 8px 24px rgba(0, 0, 0, 0.05);
+  }
+
+  /* Prefers reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }

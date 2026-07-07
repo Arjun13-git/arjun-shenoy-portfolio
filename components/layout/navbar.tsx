@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Download } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 import { navigation } from "@/config/navigation";
@@ -96,11 +96,11 @@ export function Navbar() {
         <div className="hidden items-center gap-3 md:flex">
           <a
             href={siteConfig.resumeUrl}
-            target="_blank"
-            rel="noopener noreferrer"
+            download="Arjun_Shenoy_R_Resume.pdf"
             aria-label={`Download ${siteConfig.owner}'s resume`}
-            className="inline-flex items-center justify-center h-8 px-3 rounded-lg text-sm font-medium border border-cyan-500/30 bg-cyan-500/10 text-cyan-400 hover:bg-cyan-500/20 transition-colors"
+            className="inline-flex items-center gap-1.5 justify-center h-8 px-3 rounded-lg text-sm font-medium border border-cyan-500/30 bg-cyan-500/10 text-cyan-400 hover:bg-cyan-500/20 transition-colors"
           >
+            <Download className="h-3.5 w-3.5" />
             Resume
           </a>
           <ThemeToggle />
@@ -152,10 +152,10 @@ export function Navbar() {
               <div className="mt-4 pt-4 border-t border-border">
                 <a
                   href={siteConfig.resumeUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex w-full items-center justify-center h-9 rounded-lg bg-cyan-500 text-black text-sm font-semibold hover:bg-cyan-400 transition-colors"
+                  download="Arjun_Shenoy_R_Resume.pdf"
+                  className="flex w-full items-center justify-center gap-2 h-11 rounded-lg bg-cyan-500 text-black text-sm font-semibold hover:bg-cyan-400 transition-colors"
                 >
+                  <Download className="h-4 w-4" />
                   Download Resume
                 </a>
               </div>

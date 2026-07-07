@@ -6,6 +6,7 @@ tech: ["Python", "Qiskit", "PennyLane", "NumPy", "LaTeX", "IEEE"]
 category: research
 status: research
 featured: true
+github: "https://github.com/Arjun13-git/qml-galaxy-classification--exoplanet-detection"
 date: "2026-04-01"
 highlights:
   - "Quantum circuits for feature encoding and morphological classification"

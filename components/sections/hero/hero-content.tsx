@@ -9,40 +9,47 @@ import { fadeLeft } from "@/lib/animations";
 export function HeroContent() {
   return (
     <motion.div
-      className="max-w-3xl"
+      className="max-w-2xl"
       variants={fadeLeft}
       initial="hidden"
       animate="visible"
     >
+      {/* Availability badge */}
       <AvailabilityPill />
 
-      <p className="mt-8 text-sm font-semibold uppercase tracking-[0.25em] text-cyan-400">
-        AI / ML Enthusiast • Software Engineer • Research Explorer
+      {/* Identity — name first, large and prominent */}
+      <div className="mt-6">
+        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-400 mb-3">
+          AI / ML · Software Engineering · Research
+        </p>
+        <h1 className="font-heading font-bold leading-none">
+          <span className="block text-4xl text-foreground sm:text-5xl lg:text-6xl">
+            Arjun Shenoy R
+          </span>
+          <span className="mt-4 block text-2xl font-semibold leading-snug text-muted-foreground sm:text-3xl lg:text-4xl">
+            Building{" "}
+            <span className="text-cyan-400">Intelligent Systems</span>
+            {" "}through AI,
+            <br className="hidden sm:block" />
+            {" "}Software Engineering{" "}
+            <span className="text-foreground">&amp; Research.</span>
+          </span>
+        </h1>
+      </div>
+
+      {/* Description */}
+      <p className="mt-6 max-w-lg text-base leading-7 text-muted-foreground sm:text-lg sm:leading-8">
+        Computer Science student building production-grade AI systems, 
+        backend architectures, and research-driven software — from hackathons 
+        to enterprise internships.
       </p>
 
-      <h1 className="mt-4 font-heading text-5xl font-bold leading-none lg:text-6xl xl:text-[5rem]">
-        <span className="block text-2xl font-semibold tracking-tight text-muted-foreground lg:text-3xl">
-          Arjun Shenoy R
-        </span>
-        <span className="mt-3 block">
-          Building{" "}
-          <span className="text-cyan-400">Intelligent Systems</span>
-        </span>
-        <span className="block">through AI,</span>
-        <span className="block">Software Engineering</span>
-        <span className="block">& Research.</span>
-      </h1>
-
-      <p className="mt-8 max-w-xl text-lg leading-8 text-muted-foreground">
-        Computer Science Engineering student focused on Artificial Intelligence,
-        Backend Systems and Research. Passionate about designing intelligent,
-        scalable software that bridges cutting-edge AI with real-world impact.
-      </p>
-
-      <div className="mt-10">
+      {/* CTA */}
+      <div className="mt-8">
         <HeroActions />
       </div>
 
+      {/* Stats */}
       <HeroStats />
     </motion.div>
   );

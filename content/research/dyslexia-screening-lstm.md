@@ -5,6 +5,7 @@ abstract: "A deep learning screening methodology using Long Short-Term Memory (L
 domain: "Deep Learning · Educational Technology"
 status: completed
 tech: ["Python", "TensorFlow", "Keras", "LSTM", "OpenCV", "NumPy"]
+github: "https://github.com/AjithGoveas/mini-project-dyslexia"
 date: "2025-12-01"
 collaborators: []
 ---

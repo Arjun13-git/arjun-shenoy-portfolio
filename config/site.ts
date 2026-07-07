@@ -9,7 +9,7 @@ export const siteConfig = {
   github: "https://github.com/Arjun13-git",
   linkedin: "https://linkedin.com/in/arjun-shenoy-r",
   email: "ranjalarjunshenoy@gmail.com",
-  resumeUrl: "/resume.pdf",
+  resumeUrl: "/resume/resume.pdf",
   location: "Mangalore, Karnataka, India",
   college: "Sahyadri College of Engineering & Management",
   university: "Visvesvaraya Technological University",

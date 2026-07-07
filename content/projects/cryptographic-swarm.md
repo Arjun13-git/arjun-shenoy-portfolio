@@ -6,6 +6,7 @@ tech: ["FastAPI", "Python", "MongoDB", "Redis", "Docker", "JWT Authentication", 
 category: backend
 status: completed
 featured: false
+github: "https://github.com/Arjun13-git/ZK-SWARM"
 date: "2026-05-01"
 tags: ["Backend"]
 highlights:
