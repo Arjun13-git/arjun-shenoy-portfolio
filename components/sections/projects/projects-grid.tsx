@@ -1,238 +1,223 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState, type ReactNode } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { GitBranch, ExternalLink, Star } from "lucide-react";
+import { ArrowUpRight, GitBranch } from "lucide-react";
 import type { Project, ProjectCategory } from "@/types";
 import { cn } from "@/lib/utils";
-import { fadeUp } from "@/lib/animations";
 import { formatDate } from "@/utils/date";
+import { TechList } from "@/components/shared/tech-list";
 
-const FILTERS: { label: string; value: ProjectCategory | "all" }[] = [
-  { label: "All", value: "all" },
-  { label: "AI / ML", value: "ai" },
-  { label: "Research", value: "research" },
-  { label: "Backend", value: "backend" },
-  { label: "Tools", value: "tools" },
-  { label: "Frontend", value: "frontend" },
-];
-
-const statusConfig = {
-  active: { label: "Active", class: "text-emerald-400 bg-emerald-500/10 border-emerald-500/20" },
-  completed: { label: "Completed", class: "text-blue-400 bg-blue-500/10 border-blue-500/20" },
-  research: { label: "Research", class: "text-violet-400 bg-violet-500/10 border-violet-500/20" },
-  archived: { label: "Archived", class: "text-muted-foreground bg-muted/50 border-border" },
+const CATEGORY_LABELS: Record<ProjectCategory, string> = {
+  ai: "AI / ML",
+  research: "Research",
+  backend: "Backend",
+  tools: "Tools",
+  frontend: "Frontend",
 };
 
-const tagColors: Record<string, string> = {
-  Frontend: "text-indigo-400 bg-indigo-500/10 border-indigo-500/20",
-  Backend: "text-orange-400 bg-orange-500/10 border-orange-500/20",
+const CATEGORY_ORDER: ProjectCategory[] = ["ai", "research", "backend", "tools", "frontend"];
+
+const STATUS_LABELS: Record<NonNullable<Project["status"]>, string> = {
+  active: "Ongoing",
+  published: "Published",
+  completed: "Completed",
+  draft: "Draft",
 };
 
-function ProjectCard({ project, index }: { project: Project; index: number }) {
-  const status = statusConfig[project.status];
+type Filter = ProjectCategory | "all";
+
+function ProjectLinks({ project }: { project: Project }) {
+  if (!project.github && !project.demo) return null;
 
   return (
-    <motion.article
-      layout
-      variants={fadeUp}
-      initial="hidden"
-      animate="visible"
-      exit={{ opacity: 0, scale: 0.95 }}
-      transition={{ delay: index * 0.06, duration: 0.4 }}
-      className="group flex flex-col rounded-2xl border border-border bg-card p-6 transition-all duration-200 hover:border-cyan-500/30 hover:-translate-y-1 hover:shadow-lg hover:shadow-cyan-500/5"
-      aria-label={project.title}
-    >
-      {/* Header */}
-      <div className="flex items-start justify-between gap-4">
-        <div className="flex-1 min-w-0">
-          {project.featured && (
-            <div className="mb-2 flex items-center gap-1 text-xs font-medium text-amber-400">
-              <Star className="h-3 w-3 fill-amber-400" aria-hidden="true" />
-              Featured
-            </div>
-          )}
-          <h3 className="font-heading text-base font-bold text-foreground group-hover:text-cyan-400 transition-colors line-clamp-2">
-            {project.title}
-          </h3>
-        </div>
-
-        {/* Links */}
-        <div className="flex items-center gap-2 shrink-0">
-          {project.github && (
-            <a
-              href={project.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`${project.title} GitHub repository`}
-              className="flex h-8 w-8 items-center justify-center rounded-md text-muted-foreground transition-colors hover:text-foreground"
-            >
-              <GitBranch className="h-4 w-4" />
-            </a>
-          )}
-          {project.demo && (
-            <a
-              href={project.demo}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`${project.title} live demo`}
-              className="flex h-8 w-8 items-center justify-center rounded-md text-muted-foreground transition-colors hover:text-foreground"
-            >
-              <ExternalLink className="h-4 w-4" />
-            </a>
-          )}
-        </div>
-      </div>
-
-      {/* Tags row */}
-      {project.tags && project.tags.length > 0 && (
-        <div className="mt-3 flex flex-wrap gap-1.5">
-          {project.tags.map((tag) => (
-            <span
-              key={tag}
-              className={cn(
-                "inline-flex items-center rounded-full border px-2 py-0.5 text-xs font-medium",
-                tagColors[tag] ?? "text-muted-foreground bg-secondary border-border"
-              )}
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
+    <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm">
+      {project.github && (
+        <a
+          href={project.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1.5 rounded-sm font-medium text-muted-foreground transition-colors hover:text-brand"
+        >
+          <GitBranch className="h-4 w-4" aria-hidden="true" />
+          Code
+          <span className="sr-only">for {project.title} on GitHub (opens in a new tab)</span>
+        </a>
       )}
-
-      {/* Description */}
-      <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground line-clamp-3">
-        {project.description}
-      </p>
-
-      {/* Footer */}
-      <div className="mt-5 space-y-4">
-        {/* Tech tags */}
-        <div className="flex flex-wrap gap-1.5">
-          {project.tech.slice(0, 5).map((t) => (
-            <span
-              key={t}
-              className="rounded-full border border-border bg-secondary px-2.5 py-0.5 text-xs text-muted-foreground"
-            >
-              {t}
-            </span>
-          ))}
-          {project.tech.length > 5 && (
-            <span className="rounded-full border border-border px-2.5 py-0.5 text-xs text-muted-foreground">
-              +{project.tech.length - 5}
-            </span>
-          )}
-        </div>
-
-        {/* Meta */}
-        <div className="flex items-center justify-between">
-          <span
-            className={cn(
-              "inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-medium",
-              status.class
-            )}
-          >
-            {status.label}
-          </span>
-          <time className="text-xs text-muted-foreground" dateTime={project.date}>
-            {formatDate(project.date, "short")}
-          </time>
-        </div>
-      </div>
-    </motion.article>
+      {project.demo && (
+        <a
+          href={project.demo}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1 rounded-sm font-medium text-muted-foreground transition-colors hover:text-brand"
+        >
+          Live demo
+          <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+          <span className="sr-only">of {project.title} (opens in a new tab)</span>
+        </a>
+      )}
+    </div>
   );
 }
 
-const FEATURED_SLUGS = new Set([
-  "quantum-ml-galaxy",
-  "sentinel-agents",
-  "dyslexia-risk-prediction",
-  "promptguard",
-  "aether-geoint",
-  "safe-horizon",
-]);
+function ProjectMeta({ project }: { project: Project }) {
+  return (
+    <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-muted-foreground">
+      <span className="text-brand">{CATEGORY_LABELS[project.category]}</span>
+      <span aria-hidden="true"> · </span>
+      {project.status && (
+        <>
+          {STATUS_LABELS[project.status]}
+          <span aria-hidden="true"> · </span>
+        </>
+      )}
+      <time dateTime={project.date}>{formatDate(project.date, "short")}</time>
+    </p>
+  );
+}
+
+function FeaturedCard({ project }: { project: Project }) {
+  return (
+    <article className="card-surface flex h-full flex-col rounded-2xl p-6">
+      <ProjectMeta project={project} />
+      <h4 className="mt-2 font-heading text-lg font-bold text-foreground">{project.title}</h4>
+      <p className="mt-3 text-[15px] leading-relaxed text-muted-foreground">{project.description}</p>
+
+      {project.highlights && project.highlights.length > 0 && (
+        <ul className="mt-4 space-y-2">
+          {project.highlights.slice(0, 2).map((highlight) => (
+            <li key={highlight} className="flex gap-2.5 text-sm leading-relaxed text-secondary-foreground">
+              <span className="mt-[0.55rem] h-1 w-2.5 shrink-0 rounded-full bg-brand" aria-hidden="true" />
+              {highlight}
+            </li>
+          ))}
+        </ul>
+      )}
+
+      <div className="mt-auto space-y-4 pt-6">
+        <TechList items={project.tech} max={5} />
+        <ProjectLinks project={project} />
+      </div>
+    </article>
+  );
+}
+
+function CompactCard({ project }: { project: Project }) {
+  return (
+    <article className="card-surface flex h-full flex-col rounded-xl p-5">
+      <ProjectMeta project={project} />
+      <h4 className="mt-2 font-heading text-base font-bold text-foreground">{project.title}</h4>
+      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{project.description}</p>
+      <div className="mt-auto space-y-3 pt-5">
+        <TechList items={project.tech} max={4} />
+        <ProjectLinks project={project} />
+      </div>
+    </article>
+  );
+}
+
+function AnimatedGrid({
+  projects,
+  className,
+  render,
+}: {
+  projects: Project[];
+  className: string;
+  render: (project: Project) => ReactNode;
+}) {
+  return (
+    <div className={className}>
+      {/* initial={false}: cards are visible in the server HTML; only filter changes animate */}
+      <AnimatePresence initial={false} mode="popLayout">
+        {projects.map((project) => (
+          <motion.div
+            key={project.slug}
+            layout
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+          >
+            {render(project)}
+          </motion.div>
+        ))}
+      </AnimatePresence>
+    </div>
+  );
+}
 
 export function ProjectsGrid({ projects }: { projects: Project[] }) {
-  const [activeFilter, setActiveFilter] = useState<ProjectCategory | "all">("all");
+  const [filter, setFilter] = useState<Filter>("all");
 
-  const featuredProjects = projects.filter((p) => FEATURED_SLUGS.has(p.slug));
-  const allProjects = projects;
+  // Only offer filters for categories that actually have projects.
+  const filters = useMemo(() => {
+    const present = new Set(projects.map((p) => p.category));
+    return [
+      { label: "All", value: "all" as Filter, count: projects.length },
+      ...CATEGORY_ORDER.filter((c) => present.has(c)).map((c) => ({
+        label: CATEGORY_LABELS[c],
+        value: c as Filter,
+        count: projects.filter((p) => p.category === c).length,
+      })),
+    ];
+  }, [projects]);
 
-  const filtered =
-    activeFilter === "all"
-      ? allProjects
-      : allProjects.filter((p) => p.category === activeFilter);
+  const visible = filter === "all" ? projects : projects.filter((p) => p.category === filter);
+  const featured = visible.filter((p) => p.featured);
+  const others = visible.filter((p) => !p.featured);
 
   return (
     <div>
-      {/* ── Featured Projects ───────────────────────────────────────────── */}
-      <div className="mb-20">
-        <div className="mb-8 flex items-center gap-3">
-          <Star className="h-4 w-4 fill-amber-400 text-amber-400" aria-hidden="true" />
-          <h3 className="font-heading text-lg font-semibold text-foreground">
-            Featured Projects
-          </h3>
-          <div className="flex-1 h-px bg-border" />
-        </div>
-
-        <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
-          {featuredProjects.map((project, i) => (
-            <ProjectCard key={project.slug} project={project} index={i} />
-          ))}
-        </div>
-      </div>
-
-      {/* ── All Projects ────────────────────────────────────────────────── */}
-      <div>
-        <div className="mb-8 flex items-center gap-3">
-          <h3 className="font-heading text-lg font-semibold text-foreground">
-            All Projects
-          </h3>
-          <div className="flex-1 h-px bg-border" />
-        </div>
-
-        {/* Filter bar */}
-        <div
-          className="mb-10 flex flex-wrap gap-2 justify-center"
-          role="group"
-          aria-label="Filter projects by category"
-        >
-          {FILTERS.map(({ label, value }) => (
+      <div className="mb-10 flex flex-wrap gap-2" role="group" aria-label="Filter projects by category">
+        {filters.map(({ label, value, count }) => {
+          const active = filter === value;
+          return (
             <button
               key={value}
-              onClick={() => setActiveFilter(value)}
-              aria-pressed={activeFilter === value}
+              type="button"
+              onClick={() => setFilter(value)}
+              aria-pressed={active}
               className={cn(
-                "rounded-full px-4 py-2 text-sm font-medium transition-all duration-200",
-                activeFilter === value
-                  ? "bg-cyan-500/20 text-cyan-400 border border-cyan-500/40"
-                  : "border border-border text-muted-foreground hover:border-cyan-500/30 hover:text-foreground"
+                "inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-sm font-medium transition-colors",
+                active
+                  ? "border-brand-border bg-brand-soft text-foreground"
+                  : "border-border bg-card text-muted-foreground hover:border-border-strong hover:text-foreground"
               )}
             >
               {label}
+              <span className={cn("font-mono text-xs", active ? "text-brand" : "text-muted-foreground")}>
+                {count}
+              </span>
             </button>
-          ))}
-        </div>
-
-        {/* Grid */}
-        <motion.div
-          layout
-          className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3"
-        >
-          <AnimatePresence mode="popLayout">
-            {filtered.map((project, i) => (
-              <ProjectCard key={project.slug} project={project} index={i} />
-            ))}
-          </AnimatePresence>
-        </motion.div>
-
-        {filtered.length === 0 && (
-          <p className="py-16 text-center text-muted-foreground">
-            No projects in this category yet.
-          </p>
-        )}
+          );
+        })}
       </div>
+
+      {featured.length > 0 && (
+        <div>
+          <h3 className="mb-5 font-heading text-sm font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+            Featured
+          </h3>
+          <AnimatedGrid
+            projects={featured}
+            className="grid gap-5 md:grid-cols-2 xl:grid-cols-3"
+            render={(project) => <FeaturedCard project={project} />}
+          />
+        </div>
+      )}
+
+      {others.length > 0 && (
+        <div className={cn(featured.length > 0 && "mt-14")}>
+          <h3 className="mb-5 font-heading text-sm font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+            More projects
+          </h3>
+          <AnimatedGrid
+            projects={others}
+            className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
+            render={(project) => <CompactCard project={project} />}
+          />
+        </div>
+      )}
     </div>
   );
 }

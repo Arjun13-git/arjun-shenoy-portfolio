@@ -1,56 +1,74 @@
-"use client";
-
+import { ArrowRight, Download } from "lucide-react";
+import { siteConfig } from "@/config/site";
+import { cn } from "@/lib/utils";
 import { AvailabilityPill } from "./availability-pill";
-import { HeroActions } from "./hero-actions";
-import { HeroStats } from "./hero-stats";
-import { motion } from "framer-motion";
-import { fadeLeft } from "@/lib/animations";
 
-export function HeroContent() {
+const buttonBase =
+  "inline-flex h-11 shrink-0 items-center justify-center gap-2 rounded-lg px-5 text-sm font-semibold whitespace-nowrap transition-colors";
+
+interface HeroContentProps {
+  stats: { value: number; label: string }[];
+}
+
+// Server-rendered on purpose: the name and intro are in the initial HTML
+// and never wait for JavaScript to become visible.
+export function HeroContent({ stats }: HeroContentProps) {
   return (
-    <motion.div
-      className="max-w-2xl"
-      variants={fadeLeft}
-      initial="hidden"
-      animate="visible"
-    >
-      {/* Availability badge */}
+    <div className="mx-auto max-w-xl lg:mx-0">
       <AvailabilityPill />
 
-      {/* Identity — name first, large and prominent */}
-      <div className="mt-6">
-        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-400 mb-3">
-          AI / ML · Software Engineering · Research
-        </p>
-        <h1 className="font-heading font-bold leading-none">
-          <span className="block text-4xl text-foreground sm:text-5xl lg:text-6xl">
-            Arjun Shenoy R
-          </span>
-          <span className="mt-4 block text-2xl font-semibold leading-snug text-muted-foreground sm:text-3xl lg:text-4xl">
-            Building{" "}
-            <span className="text-cyan-400">Intelligent Systems</span>
-            {" "}through AI,
-            <br className="hidden sm:block" />
-            {" "}Software Engineering{" "}
-            <span className="text-foreground">&amp; Research.</span>
-          </span>
-        </h1>
-      </div>
-
-      {/* Description */}
-      <p className="mt-6 max-w-lg text-base leading-7 text-muted-foreground sm:text-lg sm:leading-8">
-        Computer Science student building production-grade AI systems, 
-        backend architectures, and research-driven software — from hackathons 
-        to enterprise internships.
+      <p className="mt-7 font-mono text-xs uppercase tracking-[0.16em] text-brand sm:text-[13px]">
+        AI/ML Enthusiast · Software Engineering · Research
       </p>
 
-      {/* CTA */}
-      <div className="mt-8">
-        <HeroActions />
+      <h1 id="hero-heading" className="mt-3 font-heading font-bold leading-none">
+        <span className="block text-[2.5rem] text-foreground sm:text-5xl lg:text-6xl">
+          Arjun Shenoy R
+        </span>
+        <span className="mt-4 block text-xl font-semibold leading-snug text-muted-foreground text-balance sm:text-2xl lg:text-[1.75rem]">
+          Building software, exploring AI, and turning ideas into{" "}
+          <span className="text-foreground">working systems.</span>
+        </span>
+      </h1>
+
+      <p className="mt-6 text-base leading-7 text-muted-foreground text-pretty">
+        I&apos;m a Computer Science Engineering student at {siteConfig.college}.
+        Most of what I know comes from building things — hackathon projects,
+        machine learning experiments, and a college research project on quantum
+        machine learning.
+      </p>
+
+      <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center lg:justify-start">
+        <a
+          href="#projects"
+          className={cn(buttonBase, "bg-brand-fill text-brand-fill-foreground hover:opacity-90")}
+        >
+          View projects
+          <ArrowRight className="h-4 w-4" aria-hidden="true" />
+        </a>
+        <a
+          href={siteConfig.resumeUrl}
+          download="Arjun_Shenoy_R_Resume.pdf"
+          className={cn(
+            buttonBase,
+            "border border-border-strong bg-card text-foreground hover:border-brand-border hover:text-brand"
+          )}
+        >
+          <Download className="h-4 w-4" aria-hidden="true" />
+          Resume
+        </a>
       </div>
 
-      {/* Stats */}
-      <HeroStats />
-    </motion.div>
+      <dl className="mt-12 grid grid-cols-3 gap-4 border-t border-border pt-6 text-left sm:gap-8">
+        {stats.map((stat) => (
+          <div key={stat.label} className="flex min-w-0 flex-col">
+            <dt className="text-xs text-muted-foreground sm:text-sm">{stat.label}</dt>
+            <dd className="order-first font-heading text-2xl font-bold text-foreground sm:text-3xl">
+              {stat.value}
+            </dd>
+          </div>
+        ))}
+      </dl>
+    </div>
   );
 }
