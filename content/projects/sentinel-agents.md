@@ -1,25 +1,18 @@
 ---
 slug: sentinel-agents
 title: "Sentinel Agents"
-description: "An autonomous AI-powered cybersecurity platform with multi-agent orchestration for vulnerability assessment, threat analysis, and automated security reporting — built at VexStorm '26."
+description: "A team hackathon project: a pipeline of LLM agents that scans Python code for vulnerabilities, writes proof-of-concept exploits, runs them in a Docker sandbox and proposes patches. Built at VexStorm '26."
 tech: ["Python", "AI Agents", "FastAPI", "LangChain", "Security APIs"]
 category: ai
-status: completed
 featured: true
-date: "2026-02-01"
-github: "https://github.com/Arjun13-git"
-tags: ["Backend"]
+github: "https://github.com/aniprogramer/sentinel-agents"
+date: "2026-02-21"
 highlights:
-  - "Multi-agent orchestration for distributed vulnerability scanning"
-  - "Autonomous threat analysis across network, web, and system attack surfaces"
-  - "Intelligent report generation with structured vulnerability findings"
-  - "Built end-to-end at VexStorm '26 Hackathon within the timeframe"
+  - "Tree-sitter AST parsing to find candidate vulnerabilities before the LLM steps"
+  - "Generated exploits run in isolated Docker containers, then again against the patched code"
+  - "Next.js dashboard streams the analysis logs over SSE"
 ---
 
-## Context
+## Overview
 
-Built at **VexStorm '26 Hackathon** — Sentinel Agents demonstrates rapid prototyping of production-grade agentic AI systems for cybersecurity automation.
-
-## Architecture
-
-Coordinator agent spawns specialized scanners: Network Scanner, Web Vulnerability Agent, Analysis Agent, and Report Agent — all coordinating autonomously to deliver comprehensive security assessments.
+Sentinel Agents splits a security review into steps: an auditor for surface issues like hard-coded secrets, a "red team" agent that writes exploit scripts, a sandbox runner, a "blue team" agent that writes patches, and a verifier that re-runs the exploit. The patch–verify loop runs up to three times.

@@ -2,12 +2,11 @@
 slug: quantum-ml-galaxy
 title: "Quantum ML for Galaxy Classification"
 description: "A research project investigating Quantum Machine Learning for morphological galaxy classification — comparing quantum circuits against classical approaches on astronomical datasets."
-tech: ["Python", "Qiskit", "PennyLane", "NumPy", "LaTeX", "IEEE"]
+tech: ["Python", "Qiskit", "PennyLane", "NumPy", "LaTeX"]
 category: research
-status: research
 featured: true
-github: "https://github.com/Arjun13-git/qml-galaxy-classification--exoplanet-detection"
-date: "2026-04-01"
+github: "https://github.com/Arjun13-git/qml-galaxy-classification"
+date: "2026-03-02"
 highlights:
   - "Quantum circuits for feature encoding and morphological classification"
   - "Comparative study: quantum vs classical accuracy on galaxy datasets"

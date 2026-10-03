@@ -4,10 +4,9 @@ title: "Foodie — Food Ordering App"
 description: "Responsive React frontend for food ordering with category filtering, cart management, and component-driven architecture."
 tech: ["React", "JavaScript", "CSS", "HTML", "Bootstrap"]
 category: frontend
-status: completed
 featured: false
 github: "https://github.com/Arjun13-git/Foodie-Main-"
-date: "2025-09-01"
+date: "2024-11-30"
 highlights:
   - "Component-driven React architecture"
   - "Category-based filtering and search"

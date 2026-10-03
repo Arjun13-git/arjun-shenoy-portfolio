@@ -2,13 +2,11 @@
 slug: cryptographic-swarm
 title: "ZK Swarm"
 description: "A privacy-preserving multi-agent backend platform leveraging Zero-Knowledge Proof concepts and AI-driven agents for secure, verifiable collaboration."
-tech: ["FastAPI", "Python", "MongoDB", "Redis", "Docker", "JWT Authentication", "REST APIs", "Multi-Agent Architecture", "Zero-Knowledge Proof Concepts", "Backend Systems"]
+tech: ["FastAPI", "Python", "MongoDB", "Redis", "Docker", "JWT Authentication", "REST APIs", "Backend Systems"]
 category: backend
-status: completed
 featured: false
 github: "https://github.com/Arjun13-git/ZK-SWARM"
 date: "2026-05-01"
-tags: ["Backend"]
 highlights:
   - "Modular backend services with intelligent agent orchestration"
   - "Secure proof-based workflows using Zero-Knowledge Proof concepts"

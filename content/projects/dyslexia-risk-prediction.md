@@ -3,12 +3,13 @@ slug: dyslexia-risk-prediction
 title: "Dyslexia Risk Prediction System"
 description: "A deep learning screening tool using LSTM networks to analyze handwriting sequences and detect dyslexia risk — improving accuracy 15% through image preprocessing pipelines."
 tech: ["Python", "TensorFlow", "Keras", "LSTM", "OpenCV", "NumPy"]
-category: ai
-status: completed
-featured: true
+category: research
+showInResearch: true
+researchDomain: "Deep Learning · Educational Technology"
+researchStatus: completed
+featured: false
 github: "https://github.com/AjithGoveas/mini-project-dyslexia"
 date: "2025-11-01"
-tags: ["Frontend"]
 highlights:
   - "LSTM networks analyze handwriting stroke sequences for dyslexia risk detection"
   - "15% accuracy improvement via scaling, binarization, and noise reduction pipeline"

@@ -2,13 +2,11 @@
 slug: promptguard
 title: "PromptGuard"
 description: "Intelligent middleware protecting LLMs against prompt injection, jailbreak attempts, and malicious prompts — built at AMD Slingshot 2026 with multi-layer adaptive filtering."
-tech: ["Python", "LLM APIs", "AI Middleware", "Security", "FastAPI"]
+tech: ["Python", "LLM APIs", "FastAPI"]
 category: ai
-status: completed
 featured: true
 github: "https://github.com/Arjun13-git/PromptGuard"
-date: "2026-04-01"
-tags: ["Backend"]
+date: "2026-02-26"
 highlights:
   - "Multi-layer validation: pattern matching, semantic analysis, and adaptive filtering"
   - "Drop-in middleware architecture with zero latency overhead for safe inputs"
