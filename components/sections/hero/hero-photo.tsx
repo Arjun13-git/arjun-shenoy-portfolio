@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useState } from "react";
-import { HeroFlow } from "./hero-flow";
 
 /**
  * Profile photo: grayscale by default, full colour on hover.
@@ -26,8 +25,6 @@ export function HeroPhoto() {
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
       >
-        <HeroFlow />
-
         {/* Inner ring */}
         <motion.div
           className="absolute -inset-2 rounded-2xl border border-brand-border sm:-inset-3"
