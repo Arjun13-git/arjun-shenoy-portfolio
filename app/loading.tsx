@@ -3,23 +3,13 @@ export default function Loading() {
     <div
       className="fixed inset-0 z-50 flex items-center justify-center bg-background"
       role="status"
-      aria-label="Loading Neural Horizon"
+      aria-label="Loading"
     >
-      <div className="flex flex-col items-center gap-6">
-        {/* Pulsing core */}
-        <div className="relative flex h-16 w-16 items-center justify-center">
-          <div className="absolute h-full w-full animate-ping rounded-full bg-cyan-500/20" />
-          <div className="absolute h-10 w-10 animate-pulse rounded-full bg-cyan-500/30" />
-          <div className="h-4 w-4 rounded-full bg-cyan-400" />
+      <div className="flex flex-col items-center gap-4">
+        <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-brand-border bg-brand-soft">
+          <span className="font-heading text-sm font-bold text-brand">AS</span>
         </div>
-
-        {/* Brand name */}
-        <div className="text-center">
-          <p className="font-heading text-sm font-semibold tracking-widest text-foreground uppercase">
-              Arjun Shenoy R
-            </p>
-            <p className="mt-1 text-xs text-muted-foreground">Loading…</p>
-        </div>
+        <p className="text-xs text-muted-foreground">Loading…</p>
       </div>
     </div>
   );

@@ -6,8 +6,7 @@ import { SkillsSection } from "@/components/sections/skills/skills-section";
 import { ExperienceSection } from "@/components/sections/experience/experience-section";
 import { ProjectsSection } from "@/components/sections/projects/projects-section";
 import { ResearchSection } from "@/components/sections/research/research-section";
-import { AchievementsSection } from "@/components/sections/achievements/achievements-section";
-import { CertificationsSection } from "@/components/sections/certifications/certifications-section";
+import { CompetitionsSection } from "@/components/sections/competitions/competitions-section";
 // Blog is hidden — import kept for future re-enabling
 // import { BlogSection } from "@/components/sections/blog/blog-section";
 import { ContactSection } from "@/components/sections/contact/contact-section";
@@ -15,37 +14,27 @@ import { ContactSection } from "@/components/sections/contact/contact-section";
 export default function Home() {
   return (
     <>
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-brand-fill focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-brand-fill-foreground"
+      >
+        Skip to content
+      </a>
+
       <Navbar />
 
-      <main id="main-content" className="overflow-x-hidden">
-        {/* Hero — full viewport */}
+      <main id="main-content" tabIndex={-1} className="overflow-x-clip outline-none">
         <Hero />
-
-        {/* About */}
         <AboutSection />
-
-        {/* Skills */}
         <SkillsSection />
-
-        {/* Experience / Internships */}
         <ExperienceSection />
-
-        {/* Projects */}
         <ProjectsSection />
-
-        {/* Research */}
         <ResearchSection />
-
-        {/* Competitions & Experience */}
-        <AchievementsSection />
-
-        {/* Certifications */}
-        <CertificationsSection />
+        <CompetitionsSection />
 
         {/* Blog — hidden; re-enable by uncommenting below */}
         {/* <BlogSection /> */}
 
-        {/* Contact */}
         <ContactSection />
       </main>
 

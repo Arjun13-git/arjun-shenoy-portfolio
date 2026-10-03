@@ -4,7 +4,7 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* ─── Neural Horizon Design Tokens ──────────────────────────────────── */
+/* ─── Design Tokens ──────────────────────────────────────────────────── */
 
 @theme inline {
   /* Semantic color aliases from CSS variables */
@@ -27,15 +27,19 @@
   --color-input:        var(--input);
   --color-ring:         var(--ring);
 
-  /* Brand tokens */
-  --color-cyan:         var(--brand-cyan);
-  --color-blue:         var(--brand-blue);
-  --color-violet:       var(--brand-violet);
-  --color-emerald:      var(--brand-emerald);
+  /* Brand — the single cyan accent, theme-aware */
+  --color-brand:        var(--brand);
+  --color-brand-fill:   var(--brand-fill);
+  --color-brand-fill-foreground: var(--brand-fill-foreground);
+  --color-brand-soft:   var(--brand-soft);
+  --color-brand-border: var(--brand-border);
+
+  /* Surfaces */
   --color-surface:      var(--surface);
   --color-elevated:     var(--elevated);
+  --color-border-strong: var(--border-strong);
 
-  /* Sidebar */
+  /* Sidebar (shadcn) */
   --color-sidebar-ring:               var(--sidebar-ring);
   --color-sidebar-border:             var(--sidebar-border);
   --color-sidebar-accent-foreground:  var(--sidebar-accent-foreground);
@@ -62,124 +66,129 @@
 /* ─── Dark Theme (Default) ───────────────────────────────────────────── */
 
 :root {
-  /* Neural Horizon dark palette */
   --background:          #090B10;
-  --foreground:          #F8FAFC;
+  --foreground:          #F1F5F9;
 
-  --card:                #171D29;
-  --card-foreground:     #F8FAFC;
+  --card:                #131823;
+  --card-foreground:     #F1F5F9;
 
-  --popover:             #171D29;
-  --popover-foreground:  #F8FAFC;
+  --popover:             #131823;
+  --popover-foreground:  #F1F5F9;
 
-  --surface:             #10141D;
-  --elevated:            #202938;
+  --surface:             #0D1017;
+  --elevated:            #1C2331;
 
-  /* Primary — blue */
-  --primary:             #3B82F6;
-  --primary-foreground:  #F8FAFC;
+  --primary:             #22D3EE;
+  --primary-foreground:  #041016;
 
-  /* Secondary — slate */
-  --secondary:           #202938;
+  --secondary:           #1A202C;
   --secondary-foreground: #CBD5E1;
 
   --muted:               #10141D;
-  --muted-foreground:    #64748B;
+  /* 5.6:1 on cards, 6.6:1 on the page background */
+  --muted-foreground:    #8B95A7;
 
-  /* Accent — violet */
-  --accent:              #A78BFA;
-  --accent-foreground:   #F8FAFC;
+  --accent:              #1C2331;
+  --accent-foreground:   #F1F5F9;
 
   --destructive:         #EF4444;
 
   --border:              rgba(255, 255, 255, 0.08);
-  --input:               rgba(255, 255, 255, 0.08);
-  --ring:                rgba(59, 130, 246, 0.5);
+  --border-strong:       rgba(255, 255, 255, 0.14);
+  --input:               rgba(255, 255, 255, 0.10);
+  --ring:                #22D3EE;
 
   --radius: 0.625rem;
 
-  /* Brand palette */
-  --brand-cyan:    #22D3EE;
-  --brand-blue:    #3B82F6;
-  --brand-violet:  #A78BFA;
-  --brand-emerald: #22C55E;
-  --brand-warning: #FACC15;
-  --brand-danger:  #EF4444;
+  --brand:               #22D3EE;
+  --brand-fill:          #22D3EE;
+  --brand-fill-foreground: #041016;
+  --brand-soft:          rgba(34, 211, 238, 0.08);
+  --brand-border:        rgba(34, 211, 238, 0.32);
 
-  /* Sidebar */
-  --sidebar:                    #10141D;
-  --sidebar-foreground:         #F8FAFC;
-  --sidebar-primary:            #3B82F6;
-  --sidebar-primary-foreground: #F8FAFC;
-  --sidebar-accent:             #202938;
+  /* Decorative layers */
+  --grid-line:           rgba(255, 255, 255, 0.035);
+  --glow:                rgba(34, 211, 238, 0.10);
+  --shadow-card:         none;
+  --shadow-card-hover:   none;
+
+  --sidebar:                    #0D1017;
+  --sidebar-foreground:         #F1F5F9;
+  --sidebar-primary:            #22D3EE;
+  --sidebar-primary-foreground: #041016;
+  --sidebar-accent:             #1C2331;
   --sidebar-accent-foreground:  #CBD5E1;
   --sidebar-border:             rgba(255, 255, 255, 0.08);
-  --sidebar-ring:               rgba(59, 130, 246, 0.5);
+  --sidebar-ring:               #22D3EE;
+
+  color-scheme: dark;
 }
 
-/* ─── Light Theme — Premium (Linear/Vercel inspired) ─────────────────── */
+/* ─── Light Theme ────────────────────────────────────────────────────── */
 
 .light {
-  /* Clean white base with subtle warm-neutral tint */
-  --background:          #FAFAFA;
-  --foreground:          #0A0A0A;
+  /* Warm off-white page, white cards, charcoal text */
+  --background:          #F7F6F3;
+  --foreground:          #1C1D21;
 
-  /* Cards: pure white with subtle shadow */
   --card:                #FFFFFF;
-  --card-foreground:     #0A0A0A;
+  --card-foreground:     #1C1D21;
 
   --popover:             #FFFFFF;
-  --popover-foreground:  #0A0A0A;
+  --popover-foreground:  #1C1D21;
 
-  /* Surfaces: very slightly off-white */
-  --surface:             #F4F4F5;
-  --elevated:            #E4E4E7;
+  --surface:             #EFEEE9;
+  --elevated:            #E7E5DF;
 
-  /* Primary — refined blue (Vercel/Linear) */
-  --primary:             #0F62FE;
+  /* Cyan-700 family: 5:1+ on the page, 5.4:1 white-on-fill */
+  --primary:             #0E7490;
   --primary-foreground:  #FFFFFF;
 
-  /* Secondary — subtle gray (GitHub-inspired) */
-  --secondary:           #F4F4F5;
-  --secondary-foreground: #18181B;
+  --secondary:           #F1F0EC;
+  --secondary-foreground: #2E3036;
 
-  --muted:               #F4F4F5;
-  --muted-foreground:    #71717A;
+  --muted:               #F1F0EC;
+  /* 6.0:1 on the page background */
+  --muted-foreground:    #5B5E66;
 
-  /* Accent — violet */
-  --accent:              #7C3AED;
-  --accent-foreground:   #FFFFFF;
+  --accent:              #EFEEE9;
+  --accent-foreground:   #1C1D21;
 
-  --destructive:         #DC2626;
+  --destructive:         #B91C1C;
 
-  /* Borders: very subtle like Vercel */
-  --border:              #E4E4E7;
-  --input:               #E4E4E7;
-  --ring:                rgba(15, 98, 254, 0.35);
+  --border:              #E2DFD8;
+  --border-strong:       #CFCBC2;
+  --input:               #D6D3CB;
+  --ring:                #0E7490;
 
-  /* Brand palette — matched to dark theme but slightly darkened for contrast on white */
-  --brand-cyan:    #06B6D4; /* matches cyan-500 */
-  --brand-blue:    #2563EB; /* matches blue-600 */
-  --brand-violet:  #8B5CF6; /* matches violet-500 */
-  --brand-emerald: #10B981; /* matches emerald-500 */
-  --brand-warning: #EAB308;
-  --brand-danger:  #EF4444;
+  --brand:               #0B6A83;
+  --brand-fill:          #0E7490;
+  --brand-fill-foreground: #FFFFFF;
+  --brand-soft:          rgba(14, 116, 144, 0.07);
+  --brand-border:        rgba(14, 116, 144, 0.35);
+
+  --grid-line:           rgba(28, 29, 33, 0.055);
+  --glow:                rgba(14, 116, 144, 0.07);
+  --shadow-card:         0 1px 2px rgba(28, 25, 23, 0.05), 0 1px 3px rgba(28, 25, 23, 0.04);
+  --shadow-card-hover:   0 2px 4px rgba(28, 25, 23, 0.06), 0 8px 20px rgba(28, 25, 23, 0.06);
 
   --sidebar:                    #FFFFFF;
-  --sidebar-foreground:         #0A0A0A;
-  --sidebar-primary:            #06B6D4;
+  --sidebar-foreground:         #1C1D21;
+  --sidebar-primary:            #0E7490;
   --sidebar-primary-foreground: #FFFFFF;
-  --sidebar-accent:             #F4F4F5;
-  --sidebar-accent-foreground:  #0A0A0A;
-  --sidebar-border:             #E4E4E7;
-  --sidebar-ring:               rgba(6, 182, 212, 0.35);
+  --sidebar-accent:             #EFEEE9;
+  --sidebar-accent-foreground:  #1C1D21;
+  --sidebar-border:             #E2DFD8;
+  --sidebar-ring:               #0E7490;
+
+  color-scheme: light;
 }
 
 /* ─── Base Layer ─────────────────────────────────────────────────────── */
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border;
     box-sizing: border-box;
   }
 
@@ -193,7 +202,6 @@
 
   body {
     @apply bg-background text-foreground;
-    overflow-x: hidden;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -204,95 +212,74 @@
   code, kbd, pre, samp {
     font-family: var(--font-mono, 'JetBrains Mono', monospace);
   }
+
+  /* Keep anchored sections clear of the fixed navbar */
+  section[id] {
+    scroll-margin-top: 5rem;
+  }
+
+  /* One consistent, clearly visible keyboard focus style */
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
 }
 
 /* ─── Utilities ──────────────────────────────────────────────────────── */
 
 @layer utilities {
-  /* Section spacing */
-  .section-padding {
-    @apply py-24 px-6;
+  /* Static card: border + light-mode elevation, no hover behaviour */
+  .card-surface {
+    background-color: var(--card);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-card);
   }
 
-  .section-heading {
-    @apply text-3xl font-bold font-heading md:text-4xl;
+  /* Clickable card: adds a quiet border/shadow response */
+  .card-interactive {
+    transition: border-color 150ms ease, box-shadow 150ms ease;
   }
 
-  .section-subheading {
-    @apply mt-4 max-w-2xl text-muted-foreground text-lg leading-relaxed;
+  .card-interactive:hover,
+  .card-interactive:focus-within {
+    border-color: var(--border-strong);
+    box-shadow: var(--shadow-card-hover);
   }
 
-  /* Glass card — dark mode */
-  .glass {
-    background: rgba(23, 29, 41, 0.6);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+  /* Hero grid texture — works in both themes */
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+    background-size: 60px 60px;
   }
 
-  /* Glass card — light mode */
-  .glass-light {
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(0, 0, 0, 0.07);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 4px 16px rgba(0, 0, 0, 0.03);
+  .fade-in-up {
+    animation: fade-in-up 0.5s ease-out both;
   }
+}
 
-  /* Gradient text — dark mode */
-  .gradient-text {
-    background: linear-gradient(135deg, #22D3EE 0%, #3B82F6 50%, #A78BFA 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
   }
-
-  /* Gradient text — light mode override */
-  .light .gradient-text {
-    background: linear-gradient(135deg, #0891B2 0%, #0F62FE 50%, #7C3AED 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  /* Subtle glow effects */
-  .glow-cyan {
-    box-shadow: 0 0 20px rgba(34, 211, 238, 0.25);
-  }
-
-  .light .glow-cyan {
-    box-shadow: 0 0 20px rgba(8, 145, 178, 0.2);
-  }
-
-  .glow-blue {
-    box-shadow: 0 0 20px rgba(59, 130, 246, 0.25);
-  }
-
-  /* Container */
-  .container-xl {
-    @apply mx-auto w-full max-w-7xl px-6;
-  }
-
-  /* Card hover */
-  .card-hover {
-    @apply transition-all duration-200 hover:-translate-y-1 hover:shadow-lg;
-  }
-
-  /* Light mode card shadows */
-  .light .card-shadow {
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 4px 12px rgba(0, 0, 0, 0.04);
-  }
-
-  .light .card-shadow:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 8px 24px rgba(0, 0, 0, 0.05);
-  }
-
-  /* Prefers reduced motion */
-  @media (prefers-reduced-motion: reduce) {
-    * {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-    }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

@@ -3,6 +3,7 @@ import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import "./globals.css";
 import { ThemeProvider } from "@/components/providers/theme-provider";
+import { MotionProvider } from "@/components/providers/motion-provider";
 import { siteConfig } from "@/config/site";
 
 const inter = Inter({
@@ -25,8 +26,8 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: dark)",  color: "#090B10" },
-    { media: "(prefers-color-scheme: light)", color: "#F8FAFC" },
+    { media: "(prefers-color-scheme: dark)", color: "#090B10" },
+    { media: "(prefers-color-scheme: light)", color: "#F7F6F3" },
   ],
 };
 
@@ -34,58 +35,63 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
 
   title: {
-    default: `${siteConfig.owner} — ${siteConfig.name}`,
-    template: `%s | ${siteConfig.owner}`,
+    default: siteConfig.title,
+    template: `%s | ${siteConfig.name}`,
   },
 
   description: siteConfig.description,
 
   keywords: [...siteConfig.keywords],
 
-  authors: [{ name: siteConfig.owner, url: siteConfig.url }],
+  authors: [{ name: siteConfig.name, url: siteConfig.url }],
 
-  creator: siteConfig.owner,
+  creator: siteConfig.name,
 
+  alternates: {
+    canonical: "/",
+  },
+
+  // og:image / twitter:image come from app/opengraph-image.tsx
   openGraph: {
     type: "website",
     locale: "en_US",
     url: siteConfig.url,
     siteName: siteConfig.name,
-    title: `${siteConfig.owner} — ${siteConfig.name}`,
+    title: siteConfig.title,
     description: siteConfig.description,
-    images: [
-      {
-        url: siteConfig.openGraphImage,
-        width: 1200,
-        height: 630,
-        alt: `${siteConfig.owner} — ${siteConfig.tagline}`,
-      },
-    ],
   },
 
   twitter: {
     card: "summary_large_image",
-    title: `${siteConfig.owner} — ${siteConfig.name}`,
+    title: siteConfig.title,
     description: siteConfig.description,
-    images: [siteConfig.openGraphImage],
   },
 
   robots: {
     index: true,
     follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
   },
+};
 
-  icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon.ico",
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: siteConfig.name,
+  url: siteConfig.url,
+  image: `${siteConfig.url}/profile.jpg`,
+  description: siteConfig.description,
+  alumniOf: {
+    "@type": "CollegeOrUniversity",
+    name: siteConfig.college,
   },
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Mangalore",
+    addressRegion: "Karnataka",
+    addressCountry: "IN",
+  },
+  knowsAbout: ["Machine Learning", "Software Engineering", "Quantum Machine Learning", "Python"],
+  sameAs: [siteConfig.github, siteConfig.linkedin],
 };
 
 export default function RootLayout({
@@ -98,10 +104,14 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} antialiased`}
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
         <ThemeProvider>
-          <TooltipProvider>
-            {children}
-          </TooltipProvider>
+          <MotionProvider>
+            <TooltipProvider>{children}</TooltipProvider>
+          </MotionProvider>
         </ThemeProvider>
       </body>
     </html>
