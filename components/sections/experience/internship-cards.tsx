@@ -34,7 +34,11 @@ function InternshipCard({ experience }: { experience: Experience }) {
       </p>
 
       {experience.highlights.length > 0 && (
-        <ul className="mt-5 max-w-3xl space-y-2.5">
+        <ul className="relative mt-5 max-w-3xl space-y-2.5 pl-5">
+          {/* Thin rail with a slow light moving down it, like data through a pipeline */}
+          <span className="absolute bottom-1 left-0 top-1 w-px bg-border" aria-hidden="true">
+            <span className="rail-pulse absolute inset-0" />
+          </span>
           {experience.highlights.map((highlight) => (
             <li key={highlight} className="flex gap-3 text-[15px] leading-relaxed text-secondary-foreground">
               <span className="mt-[0.6rem] h-1 w-3 shrink-0 rounded-full bg-brand" aria-hidden="true" />

@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useState } from "react";
+import { HeroFlow } from "./hero-flow";
 
 /**
  * Profile photo: grayscale by default, full colour on hover.
@@ -15,7 +16,7 @@ export function HeroPhoto() {
     <div className="fade-in-up relative flex items-center justify-center">
       {/* Soft ambient glow behind the frame */}
       <div
-        className="pointer-events-none absolute h-[220px] w-[220px] rounded-full blur-[60px] sm:h-[320px] sm:w-[320px] lg:h-[380px] lg:w-[380px] lg:blur-[80px]"
+        className="pointer-events-none absolute h-[250px] w-[250px] rounded-full blur-[60px] sm:h-[360px] sm:w-[360px] lg:h-[430px] lg:w-[430px] lg:blur-[80px]"
         style={{ backgroundColor: "var(--glow)" }}
         aria-hidden="true"
       />
@@ -25,6 +26,8 @@ export function HeroPhoto() {
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
       >
+        <HeroFlow />
+
         {/* Inner ring */}
         <motion.div
           className="absolute -inset-2 rounded-2xl border border-brand-border sm:-inset-3"
@@ -42,7 +45,7 @@ export function HeroPhoto() {
         />
 
         <motion.div
-          className="relative h-[200px] w-[160px] overflow-hidden rounded-2xl bg-elevated sm:h-[280px] sm:w-[224px] lg:h-[380px] lg:w-[300px]"
+          className="relative h-[230px] w-[184px] overflow-hidden rounded-2xl bg-elevated sm:h-[320px] sm:w-[256px] lg:h-[404px] lg:w-[320px] xl:h-[430px] xl:w-[340px]"
           animate={{ scale: hovered ? 1.02 : 1 }}
           transition={{ duration: 0.4, ease: "easeOut" }}
         >
@@ -61,7 +64,7 @@ export function HeroPhoto() {
             fill
             className="object-cover object-top"
             priority
-            sizes="(max-width: 640px) 160px, (max-width: 1024px) 224px, 300px"
+            sizes="(max-width: 640px) 184px, (max-width: 1024px) 256px, (max-width: 1280px) 320px, 340px"
           />
         </motion.div>
 

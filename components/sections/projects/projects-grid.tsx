@@ -7,6 +7,7 @@ import type { Project, ProjectCategory } from "@/types";
 import { cn } from "@/lib/utils";
 import { formatDate } from "@/utils/date";
 import { TechList } from "@/components/shared/tech-list";
+import { Reveal } from "@/components/motion/reveal";
 
 const CATEGORY_LABELS: Record<ProjectCategory, string> = {
   ai: "AI / ML",
@@ -37,9 +38,9 @@ function ProjectLinks({ project }: { project: Project }) {
           href={project.github}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 rounded-sm font-medium text-muted-foreground transition-colors hover:text-brand"
+          className="group/link inline-flex items-center gap-1.5 rounded-sm font-medium text-muted-foreground transition-colors hover:text-brand"
         >
-          <GitBranch className="h-4 w-4" aria-hidden="true" />
+          <GitBranch className="h-4 w-4 transition-transform motion-safe:group-hover/link:-translate-y-0.5" aria-hidden="true" />
           Code
           <span className="sr-only">for {project.title} on GitHub (opens in a new tab)</span>
         </a>
@@ -49,10 +50,10 @@ function ProjectLinks({ project }: { project: Project }) {
           href={project.demo}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1 rounded-sm font-medium text-muted-foreground transition-colors hover:text-brand"
+          className="group/link inline-flex items-center gap-1 rounded-sm font-medium text-muted-foreground transition-colors hover:text-brand"
         >
           Live demo
-          <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+          <ArrowUpRight className="h-4 w-4 transition-transform motion-safe:group-hover/link:-translate-y-0.5 motion-safe:group-hover/link:translate-x-0.5" aria-hidden="true" />
           <span className="sr-only">of {project.title} (opens in a new tab)</span>
         </a>
       )}
@@ -78,7 +79,7 @@ function ProjectMeta({ project }: { project: Project }) {
 
 function FeaturedCard({ project }: { project: Project }) {
   return (
-    <article className="card-surface flex h-full flex-col rounded-2xl p-6">
+    <article className="card-surface card-lift flex h-full flex-col rounded-2xl p-6">
       <ProjectMeta project={project} />
       <h4 className="mt-2 font-heading text-lg font-bold text-foreground">{project.title}</h4>
       <p className="mt-3 text-[15px] leading-relaxed text-muted-foreground">{project.description}</p>
@@ -104,7 +105,7 @@ function FeaturedCard({ project }: { project: Project }) {
 
 function CompactCard({ project }: { project: Project }) {
   return (
-    <article className="card-surface flex h-full flex-col rounded-xl p-5">
+    <article className="card-surface card-lift flex h-full flex-col rounded-xl p-5">
       <ProjectMeta project={project} />
       <h4 className="mt-2 font-heading text-base font-bold text-foreground">{project.title}</h4>
       <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{project.description}</p>
@@ -129,7 +130,7 @@ function AnimatedGrid({
     <div className={className}>
       {/* initial={false}: cards are visible in the server HTML; only filter changes animate */}
       <AnimatePresence initial={false} mode="popLayout">
-        {projects.map((project) => (
+        {projects.map((project, i) => (
           <motion.div
             key={project.slug}
             layout
@@ -138,7 +139,10 @@ function AnimatedGrid({
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
           >
-            {render(project)}
+            {/* Entrance on first scroll into view; small stagger, capped */}
+            <Reveal delay={Math.min(i, 5) * 0.05} className="h-full">
+              {render(project)}
+            </Reveal>
           </motion.div>
         ))}
       </AnimatePresence>

@@ -13,7 +13,7 @@ const STATUS_LABELS: Record<ResearchStatus, string> = {
 
 function ResearchCard({ paper }: { paper: Research }) {
   return (
-    <article className="card-surface flex h-full flex-col rounded-2xl p-6 sm:p-7">
+    <article className="card-surface card-lift flex h-full flex-col rounded-2xl p-6 sm:p-7">
       <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-muted-foreground">
         <span className="text-brand">{paper.domain}</span>
         <span aria-hidden="true"> · </span>
@@ -55,9 +55,9 @@ function ResearchCard({ paper }: { paper: Research }) {
                 href={paper.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 rounded-sm font-medium text-muted-foreground transition-colors hover:text-brand"
+                className="group/link inline-flex items-center gap-1.5 rounded-sm font-medium text-muted-foreground transition-colors hover:text-brand"
               >
-                <GitBranch className="h-4 w-4" aria-hidden="true" />
+                <GitBranch className="h-4 w-4 transition-transform motion-safe:group-hover/link:-translate-y-0.5" aria-hidden="true" />
                 Code
                 <span className="sr-only">for {paper.title} on GitHub (opens in a new tab)</span>
               </a>
@@ -67,10 +67,10 @@ function ResearchCard({ paper }: { paper: Research }) {
                 href={paper.paperUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 rounded-sm font-medium text-muted-foreground transition-colors hover:text-brand"
+                className="group/link inline-flex items-center gap-1 rounded-sm font-medium text-muted-foreground transition-colors hover:text-brand"
               >
                 Read paper
-                <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
+                <ExternalLink className="h-3.5 w-3.5 transition-transform motion-safe:group-hover/link:-translate-y-0.5 motion-safe:group-hover/link:translate-x-0.5" aria-hidden="true" />
                 <span className="sr-only">: {paper.title} (opens in a new tab)</span>
               </a>
             )}

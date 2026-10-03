@@ -271,6 +271,103 @@
   .fade-in-up {
     animation: fade-in-up 0.5s ease-out both;
   }
+
+  /* ── Restrained hero motion (CSS only; disabled for reduced motion) ── */
+
+  /* Grid layer drifts one cell diagonally, then repeats seamlessly */
+  .grid-drift {
+    animation: grid-drift 48s linear infinite;
+    will-change: transform;
+  }
+
+  /* A short dash travelling along an SVG trace (path uses pathLength=100) */
+  .flow-pulse {
+    stroke-dasharray: 8 200;
+    animation: flow-pulse 3.6s linear infinite;
+  }
+
+  /* Code fragments fade in, hold briefly, fade out */
+  .code-fragment {
+    opacity: 0;
+    animation: code-fragment 16s ease-in-out infinite;
+  }
+
+  /* Vertical rail with a slow light moving down it (experience highlights) */
+  .rail-pulse {
+    background-image: linear-gradient(to bottom, transparent, var(--brand), transparent);
+    background-size: 100% 48px;
+    background-repeat: no-repeat;
+    animation: rail-pulse 5s ease-in-out infinite;
+  }
+
+  /* Card hover: tiny lift + quiet accent border, only on real hover devices */
+  @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    .card-lift {
+      transition: transform 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
+    }
+
+    .card-lift:hover {
+      transform: translateY(-2px);
+      border-color: color-mix(in oklab, var(--brand) 28%, var(--border-strong));
+      box-shadow: var(--shadow-card-hover);
+    }
+  }
+}
+
+@keyframes grid-drift {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(60px, 60px, 0); }
+}
+
+@keyframes flow-pulse {
+  from { stroke-dashoffset: 8; }
+  to   { stroke-dashoffset: -100; }
+}
+
+@keyframes code-fragment {
+  0%, 100% { opacity: 0; transform: translateY(4px); }
+  15%, 55% { opacity: 1; transform: translateY(0); }
+  70%      { opacity: 0; transform: translateY(-4px); }
+}
+
+@keyframes rail-pulse {
+  from { background-position: 0 -48px; }
+  to   { background-position: 0 calc(100% + 48px); }
+}
+
+/* Decorative motion is removed entirely for reduced-motion users */
+@media (prefers-reduced-motion: reduce) {
+  .grid-drift,
+  .rail-pulse {
+    animation: none;
+  }
+
+  .flow-pulse,
+  .code-fragment {
+    display: none;
+  }
+}
+
+/* ─── Theme switch ───────────────────────────────────────────────────── */
+
+/* View Transitions: the new theme is revealed by a circle growing from the
+   toggle (animated from JS). Disable the default cross-fade. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+/* Fallback for browsers without View Transitions: a short colour fade.
+   Higher specificity than next-themes' temporary "transition: none" rule. */
+html.theme-fade,
+html.theme-fade * {
+  transition:
+    background-color 280ms ease,
+    border-color 280ms ease,
+    color 280ms ease,
+    fill 280ms ease,
+    stroke 280ms ease !important;
 }
 
 @keyframes fade-in-up {

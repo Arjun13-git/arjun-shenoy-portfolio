@@ -17,13 +17,13 @@ export function CompetitionsSection() {
       </Reveal>
 
       <Reveal>
-        <ol className="card-surface divide-y divide-border rounded-2xl">
+        <ol className="card-surface divide-y divide-border overflow-hidden rounded-2xl">
           {competitions.map((item) => (
             <li
               key={item.event}
-              className="grid gap-1 px-5 py-5 sm:grid-cols-[10rem_1fr] sm:gap-6 sm:px-7"
+              className="group grid gap-1 px-5 py-5 transition-colors hover:bg-secondary/60 sm:grid-cols-[10rem_1fr] sm:gap-6 sm:px-7"
             >
-              <p className="font-mono text-xs uppercase tracking-[0.12em] text-muted-foreground sm:pt-1">
+              <p className="font-mono text-xs uppercase tracking-[0.12em] text-muted-foreground transition-colors group-hover:text-brand sm:pt-1">
                 {item.date}
               </p>
               <div>
