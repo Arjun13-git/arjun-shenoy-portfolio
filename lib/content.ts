@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import type { Project, Experience, Research, Certification, BlogPost } from "@/types";
+import type { Project, Experience, Research, BlogPost } from "@/types";
 
 const CONTENT_DIR = path.join(process.cwd(), "content");
 
@@ -30,10 +30,6 @@ export function getAllProjects(): Project[] {
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
 
-export function getFeaturedProjects(): Project[] {
-  return getAllProjects().filter((p) => p.featured);
-}
-
 export function getProjectBySlug(slug: string): (Project & { content: string }) | null {
   const filePath = path.join(CONTENT_DIR, "projects", `${slug}.md`);
   if (!fs.existsSync(filePath)) return null;
@@ -55,22 +51,28 @@ export function getAllExperience(): Experience[] {
 
 export function getAllResearch(): Research[] {
   const files = readDirectory("research");
-  return files
-    .map((file) =>
-      parseFile<Research>(path.join(CONTENT_DIR, "research", file))
-    )
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-}
+  const papers = files.map((file) =>
+    parseFile<Research>(path.join(CONTENT_DIR, "research", file))
+  );
 
-// ─── Certifications ───────────────────────────────────────────────────────────
+  // Projects flagged `showInResearch` also appear in the Research section,
+  // so their content lives in one file only.
+  const researchProjects: Research[] = getAllProjects()
+    .filter((p) => p.showInResearch)
+    .map((p) => ({
+      slug: p.slug,
+      title: p.title,
+      abstract: p.description,
+      domain: p.researchDomain ?? "Research",
+      status: p.researchStatus ?? "completed",
+      tech: p.tech,
+      date: p.date,
+      github: p.github,
+    }));
 
-export function getAllCertifications(): Certification[] {
-  const files = readDirectory("certifications");
-  return files
-    .map((file) =>
-      parseFile<Certification>(path.join(CONTENT_DIR, "certifications", file))
-    )
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  return [...papers, ...researchProjects].sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+  );
 }
 
 // ─── Blog ─────────────────────────────────────────────────────────────────────

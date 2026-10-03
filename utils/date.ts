@@ -1,3 +1,8 @@
+// All dates in content are plain ISO dates ("2026-03-01"), which JavaScript
+// parses as UTC midnight. Formatting in UTC keeps the server and every
+// visitor's browser on the same month, whatever their time zone.
+const TIME_ZONE = "UTC";
+
 /**
  * Format a date string to a readable format.
  * @param dateStr - ISO date string or "Present"
@@ -15,15 +20,16 @@ export function formatDate(
 
   switch (format) {
     case "short":
-      return date.toLocaleDateString("en-US", { month: "short", year: "numeric" });
+      return date.toLocaleDateString("en-US", { month: "short", year: "numeric", timeZone: TIME_ZONE });
     case "year":
-      return date.getFullYear().toString();
+      return date.getUTCFullYear().toString();
     case "long":
     default:
       return date.toLocaleDateString("en-US", {
         month: "long",
         day: "numeric",
         year: "numeric",
+        timeZone: TIME_ZONE,
       });
   }
 }
@@ -35,27 +41,4 @@ export function formatDateRange(start: string, end?: string): string {
   const startFormatted = formatDate(start, "short");
   const endFormatted = end ? formatDate(end, "short") : "Present";
   return `${startFormatted} – ${endFormatted}`;
-}
-
-/**
- * Returns relative time like "2 months ago".
- */
-export function relativeTime(dateStr: string): string {
-  const date = new Date(dateStr);
-  const now = new Date();
-  const diffMs = now.getTime() - date.getTime();
-  const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
-
-  if (diffDays < 1) return "Today";
-  if (diffDays < 7) return `${diffDays} day${diffDays === 1 ? "" : "s"} ago`;
-  if (diffDays < 30) {
-    const weeks = Math.floor(diffDays / 7);
-    return `${weeks} week${weeks === 1 ? "" : "s"} ago`;
-  }
-  if (diffDays < 365) {
-    const months = Math.floor(diffDays / 30);
-    return `${months} month${months === 1 ? "" : "s"} ago`;
-  }
-  const years = Math.floor(diffDays / 365);
-  return `${years} year${years === 1 ? "" : "s"} ago`;
 }

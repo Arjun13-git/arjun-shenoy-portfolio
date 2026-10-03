@@ -5,32 +5,32 @@ export interface Project {
   longDescription?: string;
   tech: string[];
   category: ProjectCategory;
-  status: ProjectStatus;
   featured: boolean;
   github?: string;
   demo?: string;
   date: string;
   highlights?: string[];
-  tags?: string[];
+  /** Optional status shown on the project card. */
+  status?: ResearchStatus;
+  /** Also list this project in the Research section. */
+  showInResearch?: boolean;
+  researchDomain?: string;
+  researchStatus?: ResearchStatus;
 }
 
 export type ProjectCategory = "ai" | "backend" | "research" | "frontend" | "tools";
-
-export type ProjectStatus = "active" | "completed" | "research" | "archived";
 
 export interface Experience {
   slug: string;
   company: string;
   role: string;
   type: ExperienceType;
-  duration: string;
   startDate: string;
   endDate?: string;
   location: string;
   description: string;
   highlights: string[];
   tech: string[];
-  current?: boolean;
 }
 
 export type ExperienceType = "internship" | "training" | "freelance" | "research";
@@ -44,31 +44,18 @@ export interface Research {
   tech: string[];
   date: string;
   collaborators?: string[];
+  github?: string;
   paperUrl?: string;
   presentedAt?: string;
 }
 
 export type ResearchStatus = "active" | "published" | "completed" | "draft";
 
-export interface Certification {
-  slug: string;
-  title: string;
-  issuer: string;
+export interface Competition {
+  event: string;
   date: string;
-  credentialUrl?: string;
-  description?: string;
-  skills?: string[];
-}
-
-export interface Achievement {
-  title: string;
   description: string;
-  date: string;
-  category: AchievementCategory;
-  icon?: string;
 }
-
-export type AchievementCategory = "hackathon" | "academic" | "certification" | "milestone";
 
 export interface BlogPost {
   slug: string;
@@ -83,32 +70,10 @@ export interface BlogPost {
 
 export interface SkillGroup {
   category: string;
-  icon?: string;
-  description?: string;
-  skills: Skill[];
-}
-
-export interface Skill {
-  name: string;
-  level: SkillLevel;
-  icon?: string;
-}
-
-export type SkillLevel = "beginner" | "intermediate" | "advanced" | "expert";
-
-export interface SocialLink {
-  label: string;
-  href: string;
-  icon: string;
+  skills: string[];
 }
 
 export interface NavItem {
   title: string;
   href: string;
-}
-
-export interface Stat {
-  label: string;
-  value: string;
-  description?: string;
 }

@@ -1,97 +1,30 @@
 import type { SkillGroup } from "@/types";
 
+// Grouped by how I use them. Only tools that appear in my projects,
+// research or internship work are listed here.
 export const skillGroups: SkillGroup[] = [
   {
-    category: "AI & Machine Learning",
-    description: "Building intelligent systems, ML pipelines, and agentic workflows",
-    skills: [
-      { name: "Python", level: "advanced" },
-      { name: "TensorFlow", level: "intermediate" },
-      { name: "LangChain", level: "intermediate" },
-      { name: "LangFlow", level: "intermediate" },
-      { name: "Qiskit", level: "intermediate" },
-      { name: "PennyLane", level: "intermediate" },
-      { name: "OpenCV", level: "advanced" },
-      { name: "YOLO", level: "intermediate" },
-      { name: "NumPy", level: "advanced" },
-      { name: "Pandas", level: "advanced" },
-    ],
-  },
-  {
-    category: "Backend & APIs",
-    description: "Scalable services, REST APIs, database-driven architecture",
-    skills: [
-      { name: "FastAPI", level: "advanced" },
-      { name: "Node.js", level: "advanced" },
-      { name: "Express", level: "intermediate" },
-      { name: "PostgreSQL", level: "intermediate" },
-      { name: "MongoDB", level: "advanced" },
-      { name: "MySQL", level: "intermediate" },
-      { name: "REST APIs", level: "advanced" },
-    ],
-  },
-  {
-    category: "Frontend",
-    description: "React-based interfaces, responsive design",
-    skills: [
-      { name: "React", level: "intermediate" },
-      { name: "JavaScript", level: "intermediate" },
-      { name: "TypeScript", level: "intermediate" },
-      { name: "HTML & CSS", level: "advanced" },
-      { name: "Next.js", level: "intermediate" },
-      { name: "Tailwind CSS", level: "intermediate" },
-    ],
-  },
-  {
-    category: "Cloud",
-    description: "Cloud infrastructure, deployment, and managed services",
-    skills: [
-      { name: "AWS", level: "intermediate" },
-      { name: "Google Cloud Platform (GCP)", level: "intermediate" },
-    ],
-  },
-  {
     category: "Languages",
-    description: "Core programming languages across domains",
-    skills: [
-      { name: "Python", level: "advanced" },
-      { name: "Java", level: "intermediate" },
-      { name: "JavaScript", level: "intermediate" },
-      { name: "C++", level: "beginner" },
-      { name: "SQL", level: "intermediate" },
-    ],
+    skills: ["Python", "Java", "TypeScript", "JavaScript", "C / C++", "SQL"],
   },
   {
-    category: "Quantum Computing",
-    description: "Quantum ML research and experimentation",
-    skills: [
-      { name: "Qiskit", level: "intermediate" },
-      { name: "PennyLane", level: "intermediate" },
-      { name: "Quantum Circuits", level: "intermediate" },
-      { name: "QML Algorithms", level: "intermediate" },
-    ],
+    category: "Machine Learning",
+    skills: ["PyTorch", "TensorFlow / Keras", "scikit-learn", "OpenCV", "YOLOv8", "NumPy", "Pandas"],
   },
   {
-    category: "Developer Tools",
-    description: "Tooling, deployment, and development environment",
-    skills: [
-      { name: "Git & GitHub", level: "advanced" },
-      { name: "Linux / Fedora", level: "intermediate" },
-      { name: "VS Code", level: "advanced" },
-      { name: "Render", level: "intermediate" },
-      { name: "Vercel", level: "intermediate" },
-      { name: "Docker", level: "intermediate" },
-      { name: "LaTeX", level: "intermediate" },
-    ],
+    category: "LLMs & Agents",
+    skills: ["LangChain", "LangGraph", "LangFlow", "Gemini API", "Amazon Bedrock", "ChromaDB"],
   },
   {
-    category: "Graphics & Engineering",
-    description: "3D rendering and CAD automation",
-    skills: [
-      { name: "OpenGL", level: "beginner" },
-      { name: "C++ / GLFW", level: "beginner" },
-      { name: "Build123d", level: "intermediate" },
-      { name: "CadQuery", level: "intermediate" },
-    ],
+    category: "Web & Backend",
+    skills: ["FastAPI", "Node.js", "Express", "Next.js", "React", "Tailwind CSS"],
+  },
+  {
+    category: "Data & Cloud",
+    skills: ["PostgreSQL", "MongoDB", "MySQL", "DynamoDB", "AWS", "Docker"],
+  },
+  {
+    category: "Research & Tools",
+    skills: ["Qiskit", "PennyLane", "LaTeX", "Git", "Linux", "CadQuery / Build123d"],
   },
 ];
